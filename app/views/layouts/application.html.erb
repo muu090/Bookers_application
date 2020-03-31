@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/c436269187.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -12,4 +13,13 @@
   <body>
     <%= yield %>
   </body>
+  <footer>
+      <div class='container'>
+        <div class='row'>
+          <div class='col-xs-3 col-xs-offset-9'>
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+  </footer>
 </html>
