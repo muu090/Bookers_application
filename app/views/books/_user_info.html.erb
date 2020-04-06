@@ -1,21 +1,29 @@
 <div class="body">
   <div class="container">
+
+    <div id="notice">
+      <% if flash[:notice] %>
+        <p> <%= flash[:notice] %> </p>  
+      <% end %>
+    </div>
+
     <div class='col-xs-3'>
-    <% if book.errors %>
-      <div id="error_explanation">
-        <ul>
-          <% book.errors.full_messages.each do |message| %>
-            <li> <%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <div id="error_explanation">
+      <% if @book.errors.any? %>
+        <h2> error </h2>
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li> <%= message %></li>
+            <% end %>
+          </ul>
+      <% end %>
+    </div>
       <h2>User info</h2>
       <table class='table'>
         <tr>
+          <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+        </tr>
           
-        </tr> 
-
         <tr>
           <th>name</th>
           <th> <%=user.name%> </th>
@@ -27,7 +35,11 @@
         </tr>
       </table>
         <div class='row'>
-          <%= link_to  "Profile Edit", edit_user_path(user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+          <% if @user == current_user %>
+            <%= link_to  "", edit_user_path(current_user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+          <% else %>
+            <%= link_to  "", user_path(current_user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+          <% end %>
         </div>
 
         <h2>New book</h2>

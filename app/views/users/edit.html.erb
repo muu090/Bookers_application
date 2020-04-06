@@ -3,6 +3,16 @@
     <%= render 'users/header', user: @user %>
     
     <h2>User info</h2>
+    <div id="error_explanation">
+      <% if @user.errors.any? %>
+        <h2> error </h2>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li> <%= message %></li>
+            <% end %>
+          </ul>
+      <% end %>
+    </div>
 
     <%= form_for(@user) do |f| %>
       <div class="field">
@@ -12,7 +22,7 @@
 
       <div class="field">
         <label for="user_image">Image</label>
-        
+        <%= f.attachment_field :profile_image %>
       </div>
 
       <div class="field">

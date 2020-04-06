@@ -1,5 +1,4 @@
 <%# 共通ヘッダー部分-Start- %>
-  <body>
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class='container'>
         <nav class='nav navbar-nav navbar-left' >
@@ -21,11 +20,11 @@
                 <%= link_to "logout", destroy_user_session_path, method: :delete %>
               </li>
             <% else %>
-              <li class="glyphicon glyphicon-home home">
-                <%= Home %>
+              <li >
+                <%= link_to  "Home", root_path, {class: "glyphicon glyphicon-home home"} %>
               </li>
-              <li class="glyphicon glyphicon-link about">
-                <%= About %>
+              <li >
+                <%= link_to  "About", about_path, {class: "glyphicon glyphicon-link about"} %>
               <li>
                 <%= link_to "sign up", new_user_registration_path, {class: "glyphicon glyphicon-edit sign_up"} %>
               <li class="">

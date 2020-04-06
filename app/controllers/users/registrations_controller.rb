@@ -38,10 +38,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  #アカウント登録後のリダイレクト先
-  def after_sign_up_path_for(resource)
-    user_path(current_user.id)
-  end
 
   # protected
 
