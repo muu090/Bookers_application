@@ -2,6 +2,68 @@
 
 <div class="body">
   <div class="container">
+
+    <div id="notice">
+      <% if flash[:notice] %>
+        <p> <%= flash[:notice] %> </p>  
+      <% end %>
+    </div>
+
+    <div class='col-xs-3'>
+    <div id="error_explanation">
+      <% if @book.errors.any? %>
+        <h2> error </h2>
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li> <%= message %></li>
+            <% end %>
+          </ul>
+      <% end %>
+    </div>
+      <h2>User info</h2>
+      <table class='table'>
+        <tr>
+          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+        </tr>
+          
+        <tr>
+          <th>name</th>
+          <th> <%=@books.user.name%> </th>
+        </tr>
+
+        <tr>
+          <th>introduction</th>
+          <th> <%=@books.user.introduction%> </th>
+        </tr>
+      </table>
+        <div class='row'>
+          <% if @user == current_user %>
+            <%= link_to  "", edit_user_path(current_user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+          <% else %>
+            <%= link_to  "", user_path(current_user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+          <% end %>
+        </div>
+
+        <h2>New book</h2>
+        <%= form_for(@book) do |f| %>
+          <div class="field row">
+            <label for="book_title">Title</label>
+            <%= f.text_field :title, class: "col-xs-12 book_title" %>
+          </div>
+
+          <div class="field row">
+            <label for="book_opinion">Opinion</label>
+            <%= f.text_area :body, class: "col-xs-12 book_body" %>
+          </div>
+
+          <div class="actions row">
+            <%= f.submit 'Create Book', class: "btn btn-primary col-xs-12" %>
+          </div>
+        <% end %>
+    </div>
+
+<div class="body">
+  <div class="container">
     <div class="row">
       <div id="error_explanation">
         <% if @book.errors %>
@@ -13,7 +75,7 @@
         <% end %>
       </div>
 
-      <%= render 'books/user_info', {book: @book, user: @user, books: @books} %>
+      
 
       <div class='col-xs-9'>
         <h2>Book detail</h2>
